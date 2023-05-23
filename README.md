@@ -1,5 +1,5 @@
 # MyTechOnlineSoppingWebsite(Devam Ediyor)
-E-Ticaret Web Sitesi. Bu proje, teknoloji ürünleri satışı yapan web sitesidir.
+E-Ticaret Web Sitesi. Bu proje, teknoloji ürünleri satışı yapan web sitesidir. Projemde hazır tema kullanılmıştır.
 ## 📌 Kullanıcı Tarafında Yapılacaklar
 - [x] Ürün Listeleme
 - [x] Ürün Deyat
