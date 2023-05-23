@@ -1,0 +1,11 @@
+﻿
+
+@{
+    ViewData["Title"] = "Ana Sayfa";
+}
+<div class="row">
+    <div class="col-md-12 ">
+    <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">Öne Çıkan Ürünler</span></h2>
+    </div>
+    @await Component.InvokeAsync("ProductList")
+</div>

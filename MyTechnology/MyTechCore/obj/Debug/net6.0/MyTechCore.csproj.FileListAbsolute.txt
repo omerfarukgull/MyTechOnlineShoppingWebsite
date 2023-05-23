@@ -1,0 +1,12 @@
+C:\Users\omerf\OneDrive\Masaüstü\MyTechnology\MyTechCore\obj\Debug\net6.0\MyTechCore.csproj.AssemblyReference.cache
+C:\Users\omerf\OneDrive\Masaüstü\MyTechnology\MyTechCore\obj\Debug\net6.0\MyTechCore.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\omerf\OneDrive\Masaüstü\MyTechnology\MyTechCore\obj\Debug\net6.0\MyTechCore.AssemblyInfoInputs.cache
+C:\Users\omerf\OneDrive\Masaüstü\MyTechnology\MyTechCore\obj\Debug\net6.0\MyTechCore.AssemblyInfo.cs
+C:\Users\omerf\OneDrive\Masaüstü\MyTechnology\MyTechCore\obj\Debug\net6.0\MyTechCore.csproj.CoreCompileInputs.cache
+C:\Users\omerf\OneDrive\Masaüstü\MyTechnology\MyTechCore\bin\Debug\net6.0\MyTechCore.deps.json
+C:\Users\omerf\OneDrive\Masaüstü\MyTechnology\MyTechCore\bin\Debug\net6.0\MyTechCore.dll
+C:\Users\omerf\OneDrive\Masaüstü\MyTechnology\MyTechCore\bin\Debug\net6.0\MyTechCore.pdb
+C:\Users\omerf\OneDrive\Masaüstü\MyTechnology\MyTechCore\obj\Debug\net6.0\MyTechCore.dll
+C:\Users\omerf\OneDrive\Masaüstü\MyTechnology\MyTechCore\obj\Debug\net6.0\refint\MyTechCore.dll
+C:\Users\omerf\OneDrive\Masaüstü\MyTechnology\MyTechCore\obj\Debug\net6.0\MyTechCore.pdb
+C:\Users\omerf\OneDrive\Masaüstü\MyTechnology\MyTechCore\obj\Debug\net6.0\ref\MyTechCore.dll
