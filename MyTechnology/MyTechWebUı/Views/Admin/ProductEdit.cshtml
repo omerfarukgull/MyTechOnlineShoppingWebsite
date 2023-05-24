@@ -1,0 +1,97 @@
+﻿@using MyTechWebUı.Models;
+@model ProductModel
+@{
+    ViewData["Title"] = "ProductEdit";
+    Layout = "~/Views/Shared/_AdninLayout.cshtml";
+}
+
+<div class="col-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Ürün Düzenle</h4>
+            <p class="card-description">
+                Lütfen Güncellemek İstediğiniz Alanları Boş Bırakmayın
+            </p>
+            <form asp-controller="Admin" asp-action="ProductEdit" method="post" enctype="multipart/form-data" class="forms-sample">
+                <input name="ProductId" type="hidden" class="form-control" id="exampleInputName1" value="@Model.ProductId">
+                <div class="form-group">
+                    <label asp-for="ProductName"></label>
+                    <input asp-for="ProductName" type="text" class="form-control" placeholder="Ürün Adı"
+                           required="required" data-validation-required-message="Lütfen İsim Giriniz">
+                </div>
+                <div class="form-group">
+                    <label asp-for="ProductTitle"></label>
+                    <input asp-for="ProductTitle" type="text" class="form-control" placeholder="Ürün Başlık"
+                           required=" required" data-validation-required-message="Lütfen Ürün Başlık Giriniz">
+                </div>
+                <div class="form-group">
+                    <label asp-for="ProductDescription"></label>
+                    <textarea asp-for="ProductDescription" id="editor" class="form-control" placeholder="Açıklama" style="height:200"
+                              required=" required" data-validation-required-message="Lütfen Ürün Açıklama Giriniz"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Kategori</label>
+                    @Html.DropDownListFor(x=>x.CategoryId,(List<SelectListItem>)ViewBag.categories, new {@class="form-control"})
+                </div>
+                <div class="form-group">
+                    <label>Resim Yükle</label>
+                    <input type="hidden" asp-for="ImgUrl1" />
+                    <img src="~/img/@Model.ImgUrl1" width="100" />
+                    <input type="file" name="file" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="ProductPrice"></label>
+                    <input asp-for="ProductPrice" type="text" class="form-control" placeholder="Fiyat"
+                           required=" required" data-validation-required-message="Lütfen Ürün Fiyat Giriniz">
+                </div>
+                <h4 class="card-title">Ürün Yayın Durum</h4>
+                <div class="form-group">
+                    <div class="form-check">
+                        @if (Model.IsApproved == true)
+                        {
+                            <label asp-for="IsApproved" class="form-check-label">
+                                <input asp-for=IsApproved type="checkbox" checked class="form-check-input">Yayınla
+                            </label>
+                        }
+                        else
+                        {
+                            <label asp-for="IsApproved" class="form-check-label">
+                                <input asp-for=IsApproved type="checkbox" class="form-check-input">Yayınla
+                            </label>
+
+                        }
+                    </div>
+                </div>
+                <h4 class="card-title">Ürün Ana Sayda Yayın Durum</h4>
+                <div class="form-group">
+                    <div class="form-check">
+                        @if (Model.IsApproved == true)
+                        {
+                            <label asp-for="IsHome" class="form-check-label">
+                                <input asp-for=IsHome type="checkbox" checked class="form-check-input">Yayınla
+                            </label>
+                        }
+                        else
+                        {
+                            <label asp-for="IsHome" class="form-check-label">
+                                <input asp-for=IsHome type="checkbox" class="form-check-input">Yayınla
+                            </label>
+
+                        }
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary mr-2">Kaydet</button>
+                <button class="btn btn-light">İptal</button>
+            </form>
+        </div>
+    </div>
+</div>
+@section Scripts
+    {
+    <script src="https://cdn.ckeditor.com/4.21.0/standard/ckeditor.js"></script>
+    <script>
+        CKEDITOR.replace('editor');
+    </script>
+    }
+

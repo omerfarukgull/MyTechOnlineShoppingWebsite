@@ -16,8 +16,8 @@ namespace MyTechEntity
         public string? ImgUrl2 { get;set; }
         public string? ImgUrl3 { get; set; }
         public decimal ProductPrice { get; set; }
-        public bool? IsApproved { get; set; }
-        public bool? IsHome { get; set; }
+        public bool IsApproved { get; set; }
+        public bool IsHome { get; set; }
         public DateTime DateAdded { get; set; } = DateTime.Now;
 
         public int CategoryId { get; set; }
