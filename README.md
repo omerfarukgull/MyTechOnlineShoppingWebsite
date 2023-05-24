@@ -2,7 +2,7 @@
 E-Ticaret Web Sitesi. Bu proje, teknoloji ürünleri satışı yapan web sitesidir. Projemde hazır tema kullanılmıştır.
 ## 📌 Kullanıcı Tarafında Yapılacaklar
 - [x] Ürün Listeleme
-- [x] Ürün Deyat
+- [x] Ürün Detay
 - [x] Ürün Yorum
 - [x] İletişim Mail Göderme
 - [ ] Üyelik Sistemi
@@ -12,7 +12,8 @@ E-Ticaret Web Sitesi. Bu proje, teknoloji ürünleri satışı yapan web sitesid
 
 
 ## 📌 Admin Tarafında Yapılacaklar
-- [ ] Admin Listeleme, Güncelleme, Ekle, Silme İşlemleri
+- [x] Admin Ürün Listeleme, Güncelleme, Ekle, Silme İşlemleri
+- [ ] Ürün Silme İşlemleri
 - [ ] Admin Dashboard
 - [ ] Sipariş Onaylama
 - [ ] Üye Rol
