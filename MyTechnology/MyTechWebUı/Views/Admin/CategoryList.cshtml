@@ -1,0 +1,36 @@
+﻿@using MyTechEntity;
+@model IEnumerable<Category>
+@{
+    ViewData["Title"] = "CategoryList";
+    Layout = "~/Views/Shared/_AdninLayout.cshtml";
+}
+<h1>Kategori Listesi</h1>
+
+
+
+<div class="col-md-12">
+    <a asp-action="CategoryAdd" class="btn btn-outline-primary">Kategori Ekle</a>
+    <div class="table-responsive mt-5 ">
+        <table class="table table-striped table-hover table-bordered">
+            <thead>
+                <tr>
+                    <th>Kategori Id</th>
+                    <th>Kategori Adı</th>
+                    <th>Kategori Ait Ürün Sayısı</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.CategoryId</td>
+                        <td>@item.CategoryName</td>
+                       @* <td>@item.Products.Count()</td>*@
+                        <td><a asp-action="CategoryDetails" asp-route-categoryId="@item.CategoryId" class="btn btn-outline-success">Detaylar</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

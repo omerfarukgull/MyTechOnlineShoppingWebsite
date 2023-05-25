@@ -9,5 +9,6 @@ namespace MyTechData.Abstract
 {
     public interface IReviewRepository:IRepository<Review>
     {
+        public List<Review> GetAllWithProductName(string p);
     }
 }

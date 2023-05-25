@@ -15,8 +15,9 @@ namespace MyTechBusiness.Abstract
         List<Product> GetByCategory(int categoryId);
         void Add(Product product);
         void Update(Product product);
-        void Delete(int productId);
+        void Delete(Product product);
         Product GetById(int productId);
+    
         
     }
 }

@@ -1,0 +1,49 @@
+﻿@using MyTechEntity;
+@model IEnumerable<Review>
+@{
+    ViewData["Title"] = "ReviewList";
+    Layout = "~/Views/Shared/_AdninLayout.cshtml";
+}
+
+<h1>Yorum Listesi</h1>
+
+
+
+<div class="col-md-12">
+    <div class="table-responsive mt-5 ">
+        <table class="table table-striped table-hover table-bordered">
+            <thead>
+                <tr>
+                    <th>Yorum Id</th>
+                    <th>Adı</th>
+                    <th>Email</th>
+                    <th>Yorum</th>
+                    <th>Yoruma Ait Ürün</th>
+
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Id</td>
+                        <td>@item.Name</td>
+                        <td>@item.Email</td>
+                        <td>@item.Comment</td>
+                        <td>@item.Product.ProductName</td>
+
+                        <td><a asp-action="ReviewDetails" asp-route-id="@item.Id" class="btn btn-outline-success">Detaylar</a>
+                        
+                            <form asp-controller="Admin" asp-action="ReviewDelete" class="d-inline" method="post">
+                                <input type="hidden" name="reviewId" value="@item.Id"  />
+                                <button type="submit" class="btn btn-outline-danger">Sil</button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+

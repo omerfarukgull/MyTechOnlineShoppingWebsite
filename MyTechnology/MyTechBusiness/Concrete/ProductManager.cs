@@ -22,9 +22,9 @@ namespace MyTechBusiness.Concrete
             _productRepository.Create(product);
         }
 
-        public void Delete(int productId)
+        public void Delete(Product product)
         {
-            throw new NotImplementedException();
+            _productRepository.Delete(product);
         }
         public List<Product> GetList()
         {

@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="~/skydash/vendors/css/vendor.bundle.base.css">
     <link rel="stylesheet" href="~/skydash/vendors/datatables.net-bs4/dataTables.bootstrap4.css">
     <link rel="stylesheet" href="~/skydash/vendors/ti-icons/css/themify-icons.css">
-    <link rel="stylesheet" type="~/skydash/text/css" href="js/select.dataTables.min.css">
+    <link rel="stylesheet" type="~/skydash/text/css" href="~/skydash/js/select.dataTables.min.css">
     <link rel="stylesheet" href="~/skydash/css/vertical-layout-light/style.css">
     <link rel="shortcut icon" href="~/skydash/images/favicon.png" />
 
@@ -60,6 +60,7 @@
         </nav>
 
         <div class="container-fluid page-body-wrapper">
+   
             <div class="theme-setting-wrapper">
                 <div id="settings-trigger"><i class="ti-settings"></i></div>
                 <div id="theme-settings" class="settings-panel">
@@ -78,53 +79,57 @@
                     </div>
                 </div>
             </div>
+                <nav class="sidebar sidebar-offcanvas" id="sidebar">
+                    <ul class="nav">
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Admin" asp-action="Index">
+                                <i class="icon-grid menu-icon"></i>
+                                <span class="menu-title">Dashboard</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Admin" asp-action="ProductList">
+                                <i class="icon-paper menu-icon"></i>
+                                <span class="menu-title">Ürünler</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Admin" asp-action="CategoryList">
+                                <i class="icon-paper menu-icon"></i>
+                                <span class="menu-title">Kategoriler</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Admin" asp-action="ReviewList">
+                                <i class="icon-paper menu-icon"></i>
+                                <span class="menu-title">Yorumlar</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <i class="icon-paper menu-icon"></i>
+                                <span class="menu-title">Üyeler</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
 
-            <nav class="sidebar sidebar-offcanvas" id="sidebar">
-                <ul class="nav">
-                    <li class="nav-item">
-                        <a class="nav-link" asp-controller="Admin" asp-action="Index">
-                            <i class="icon-grid menu-icon"></i>
-                            <span class="menu-title">Dashboard</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" asp-controller="Admin" asp-action="ProductList">
-                            <i class="icon-paper menu-icon"></i>
-                            <span class="menu-title">Ürünler</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <i class="icon-paper menu-icon"></i>
-                            <span class="menu-title">Kategoriler</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <i class="icon-paper menu-icon"></i>
-                            <span class="menu-title">Üyeler</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
+                <div class="main-panel">
+                    <div class="content-wrapper">
+                        <div class="row">
+                            <div class="col-md-12 grid-margin">
+                                <div class="row">
 
-            <div class="main-panel">
-                <div class="content-wrapper">
-                    <div class="row">
-                        <div class="col-md-12 grid-margin">
-                            <div class="row">
-                              
-                                @RenderBody()
+                                    @RenderBody()
+                                </div>
+
                             </div>
-                           
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div>
-    </div>
+
 
 
 

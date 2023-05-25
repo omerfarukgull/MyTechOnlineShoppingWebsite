@@ -22,11 +22,14 @@ namespace MyTechBusiness.Concrete
            _reviewRepository.Create(review);
         }
 
-        public void Delete(int reviewId)
+        public void Delete(Review review)
         {
-            throw new NotImplementedException();
+            _reviewRepository.Delete(review);
         }
-
+        public List<Review> GetAllWithProductName(string p)
+        {
+            return _reviewRepository.GetAllWithProductName(p);
+        }
         public List<Review> GetAll(int productId)
         {
             return _reviewRepository.GetList(r => r.ProductId == productId);
@@ -34,12 +37,17 @@ namespace MyTechBusiness.Concrete
 
         public Review GetById(int reviewId)
         {
-            throw new NotImplementedException();
+            return _reviewRepository.Get(r=>r.Id==reviewId);
         }
 
         public void Update(Review review)
         {
-            throw new NotImplementedException();
+           _reviewRepository.Update(review);
+        }
+
+        public List<Review> GetAll()
+        {
+            return _reviewRepository.GetList();
         }
     }
 }

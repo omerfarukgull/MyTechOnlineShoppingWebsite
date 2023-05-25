@@ -1,0 +1,71 @@
+﻿@model CategoryModel
+@{
+    ViewData["Title"] = "CategoryDetails";
+    Layout = "~/Views/Shared/_AdninLayout.cshtml";
+}
+
+<div class="col-6 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Kategori Düzenle</h4>
+            <form asp-controller="Admin" asp-action="CategoryDetails" method="post" class="forms-sample">
+                <input type="hidden" name="categoryId" value="@Model.CategoryId">
+                <div class="form-group">
+                    <label>Kategori Adı</label>
+                    <input asp-for=CategoryName type="text" class="form-control" placeholder="Kategori Adı">
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-outline-primary mr-2">Kaydet</button>
+                    <button class="btn btn-light">İptal</button>
+                </div>
+
+                <div id="blogs">
+
+                    @for (int i = 0; i < Model.Products.Count; i++)
+                    {
+                        <input type="hidden" name="Products[@i].ProductId" value="@Model.Products[@i].ProductId">
+                        <input type="hidden" name="Products[@i].ProductName" value="@Model.Products[@i].ProductName">
+                    }
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="col-md-6 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4> Kategoriye Ait Ürünler</h4>
+            @if (Model.Products.Count > 0)
+            {
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Başlık</th>
+                            <th>Düzenle</th>
+      
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        @foreach (var item in Model.Products)
+                        {
+                            <tr>
+                                <td>@item.ProductId</td>
+                                <td width="50px">@item.ProductName</td>
+                                <td><a asp-controller="Admin" asp-action="ProductEdit" asp-route-prodcutId="@item.ProductId" class="btn btn-outline-success btn-fw">Düzenle</a></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+            else
+            {
+                <div class="alert alert-info text-dark">
+                    <h3>Kategoriye Ait Uruin Yok</h3>
+                </div>
+            }
+        </div>
+    </div>
+</div>

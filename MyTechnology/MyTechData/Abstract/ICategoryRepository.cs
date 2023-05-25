@@ -9,5 +9,7 @@ namespace MyTechData.Abstract
 {
     public interface ICategoryRepository : IRepository<Category>
     {
+        Category GetByIdProdcut(int categoryid);
+
     }
 }

@@ -12,11 +12,13 @@ namespace MyTechWebUı.Controllers
     {
         private IProductService _productService;
         private ICategoryService _categoryService;
+        private IReviewService _reviewService;
 
-        public AdminController(IProductService productService, ICategoryService categoryService)
+        public AdminController(IProductService productService, ICategoryService categoryService, IReviewService reviewService)
         {
             _productService = productService;
             _categoryService = categoryService;
+            _reviewService = reviewService;
         }
         public IActionResult Index()
         {
@@ -48,14 +50,14 @@ namespace MyTechWebUı.Controllers
             {
                 var entity = new Product
                 {
-                    ProductName=product.ProductName,
-                    ProductTitle=product.ProductTitle,
-                    ProductDescription=product.ProductDescription,
-                    ProductPrice=product.ProductPrice,
-                    ImgUrl1= file.FileName,
-                    CategoryId=product.CategoryId,
-                    IsApproved=product.IsApproved,
-                    IsHome=product.IsHome,
+                    ProductName = product.ProductName,
+                    ProductTitle = product.ProductTitle,
+                    ProductDescription = product.ProductDescription,
+                    ProductPrice = product.ProductPrice,
+                    ImgUrl1 = file.FileName,
+                    CategoryId = product.CategoryId,
+                    IsApproved = product.IsApproved,
+                    IsHome = product.IsHome,
                 };
                 var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\img", file.FileName);
                 using (var stream = new FileStream(path, FileMode.Create))
@@ -68,18 +70,18 @@ namespace MyTechWebUı.Controllers
             return View(product);
         }
         [HttpGet]
-        public IActionResult ProductEdit(int? ProductId)
+        public IActionResult ProductEdit(int? productId)
         {
             var category = _categoryService.GetAll();
             List<SelectListItem> categoryValues = (from x in category
                                                    select new SelectListItem
                                                    {
-                                                    Text=x.CategoryName,
-                                                    Value=x.CategoryId.ToString()
+                                                       Text = x.CategoryName,
+                                                       Value = x.CategoryId.ToString()
                                                    }).ToList();
-            ViewBag.categories=categoryValues;
+            ViewBag.categories = categoryValues;
 
-            Product model = _productService.GetById((int)ProductId);
+            Product model = _productService.GetById((int)productId);
             var entity = new ProductModel()
             {
                 ProductId = model.ProductId,
@@ -136,7 +138,126 @@ namespace MyTechWebUı.Controllers
             }
             return View(product);
         }
+
+        [HttpPost]
+        public IActionResult ProductDelete(int productId)
+        {
+            Product product = _productService.GetById(productId);
+            if (product == null)
+            {
+                return NotFound();
+            }
+            _productService.Delete(product);
+            return RedirectToAction("ProductList");
+        }
         #endregion
 
+        #region Kategori Islemleri
+        public IActionResult CategoryList()
+        {
+            var model = _categoryService.GetAll();
+            return View(model);
+        }
+        [HttpGet]
+        public IActionResult CategoryAdd()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult CategoryAdd(CategoryModel categoryModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var entity = new Category()
+                {
+                    CategoryName = categoryModel.CategoryName,
+                };
+                _categoryService.Add(entity);
+                return RedirectToAction("CategoryList");
+            }
+            return View(categoryModel);
+
+        }
+        [HttpGet]
+        public IActionResult CategoryDetails(int categoryId)
+        {
+            var entity = _categoryService.GetByIdProdcut(categoryId);
+            var model = new CategoryModel
+            {
+                CategoryId = entity.CategoryId,
+                CategoryName = entity.CategoryName,
+                Products = entity.Products.ToList(),
+            };
+            return View(model);
+        }
+        [HttpPost]
+        public IActionResult CategoryDetails(CategoryModel categoryModel)
+        {
+            var entity = _categoryService.GetById(categoryModel.CategoryId);
+            if (entity == null)
+            {
+                return NotFound();
+            }
+
+            entity.CategoryId = categoryModel.CategoryId;
+            entity.CategoryName = categoryModel.CategoryName;
+            _categoryService.Update(entity);
+            return RedirectToAction("CategoryList");
+        }
+        #endregion
+
+        #region Yorum Islemeri
+        public IActionResult ReviewList()
+        {
+            var model = _reviewService.GetAllWithProductName("Product");
+            //var model = _reviewService.GetAll();
+            return View(model);
+        }
+        public IActionResult ReviewDetails(int id)
+        {
+            var model = _reviewService.GetById(id);
+            if (model == null)
+            {
+                return NotFound();
+            }
+            var entity = new ReviewModel()
+            {
+                Id = model.Id,
+                Name = model.Name,
+                Email = model.Email,
+                Comment = model.Comment,
+            };
+
+            return View(entity);
+        }
+        [HttpPost]
+        public IActionResult ReviewDetails(ReviewModel model)
+        {
+            var entity = _reviewService.GetById(model.Id);
+            if (model == null)
+            {
+                return NotFound();
+            }
+
+            entity.Id = model.Id;
+            entity.Name = model.Name;
+            entity.Email = model.Email;
+            entity.Comment = model.Comment;
+            _reviewService.Update(entity);
+
+            return RedirectToAction("ReviewList");
+        }
+        [HttpPost]
+        public IActionResult ReviewDelete(int reviewId)
+        {
+            var model =_reviewService.GetById(reviewId);
+            if (model == null)
+            {
+                return NotFound();
+            }
+            _reviewService.Delete(model);
+            return RedirectToAction("ReviewList");
+        }
+        #endregion
     }
 }

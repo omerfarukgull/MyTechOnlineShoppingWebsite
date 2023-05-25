@@ -13,8 +13,9 @@
 
 <hr />
 
-<div class="col-md-12">
-    <a asp-controller="Admin" asp-action="ProductAdd" class='btn btn-primary mt-2 mb-2'>Yeni Ürün Ekle</a>
+<div class="col-md-12 ">
+    <h1>Ürün Listesi Listesi</h1>
+    <a asp-controller="Admin" asp-action="ProductAdd" class='btn btn-primary mt-5 mb-5'>Yeni Ürün Ekle</a>
     <table id="dataTable" class="table table-striped table-bordered" width="100%">
         <thead>
             <tr>
@@ -56,8 +57,11 @@
                         }
                     </td>
                     <td>
-                        <a asp-controller="Admin" asp-action="ProductEdit" asp-route-ProductId="@item.ProductId" class='btn btn-outline-success'>Detaylar</a>
-                        <a class='btn btn-outline-danger'>Sil</a>
+                        <a asp-controller="Admin" asp-action="ProductEdit" asp-route-productId="@item.ProductId" class='btn btn-outline-success'>Detaylar</a>
+                        <form asp-controller="Admin" asp-action="ProductDelete" class="d-inline" method="post">
+                            <input type="hidden" name="productId" value="@item.ProductId">
+                            <button class='btn btn-outline-danger'>Sil</button>
+                        </form>
                     </td>
                 </tr>
             }

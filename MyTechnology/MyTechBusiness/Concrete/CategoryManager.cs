@@ -19,12 +19,11 @@ namespace MyTechBusiness.Concrete
 
         public void Add(Category category)
         {
-            throw new NotImplementedException();
+           _categoryRepository.Create(category);
         }
-
-        public void Delete(int categoryId)
+        public void Delete(Category category)
         {
-            throw new NotImplementedException();
+            _categoryRepository.Delete(category);
         }
 
         public List<Category> GetAll()
@@ -32,9 +31,18 @@ namespace MyTechBusiness.Concrete
             return _categoryRepository.GetList();
         }
 
+        public Category GetById(int categoryid)
+        {
+            return _categoryRepository.Get(c=>c.CategoryId==categoryid);
+        }
+        public Category GetByIdProdcut(int categoryid)
+        {
+            return _categoryRepository.GetByIdProdcut(categoryid);
+        }
+       
         public void Update(Category category)
         {
-            throw new NotImplementedException();
+            _categoryRepository.Update(category);
         }
     }
 }

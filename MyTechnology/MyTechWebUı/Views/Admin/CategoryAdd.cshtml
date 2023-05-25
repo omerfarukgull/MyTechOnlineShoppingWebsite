@@ -1,0 +1,28 @@
+﻿@model CategoryModel
+@{
+    ViewData["Title"] = "CategoryAdd";
+    Layout = "~/Views/Shared/_AdninLayout.cshtml";
+}
+
+
+<div class="col-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Yeni Kategori Ekle</h4>
+            <p class="card-description">
+                Lütfen Tüm Alanları Doldurunuz
+            </p>
+            <form asp-controller="Admin" asp-action="CategoryAdd" method="post" class="forms-sample">
+                <div class="form-group">
+                    <label asp-for="CategoryName"></label>
+                    <input asp-for="CategoryName" type="text" class="form-control" placeholder="Ürün Adı"
+                           required=" required" data-validation-required-message="Lütfen Ürün Adı Giriniz">
+
+                </div>
+                <button type="submit" class="btn btn-primary mr-2">Ekle</button>
+                <button class="btn btn-light">İptal</button>
+            </form>
+        </div>
+    </div>
+</div>
+
