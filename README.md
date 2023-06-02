@@ -5,8 +5,10 @@ E-Ticaret Web Sitesi. Bu proje, teknoloji ürünleri satışı yapan web sitesid
 - [x] Ürün Detay
 - [x] Ürün Yorum
 - [x] İletişim Mail Göderme
-- [ ] Üyelik Sistemi
-- [ ] Login İşlemleri
+- [x] Üye Giriş
+- [x] Üye Şifre Değişimi
+- [x] Üye olma
+- [x] Mail ile Onaylama
 - [ ] Sepet İşlemleri
 - [ ] Ödeme İşlemeri
 
@@ -16,7 +18,6 @@ E-Ticaret Web Sitesi. Bu proje, teknoloji ürünleri satışı yapan web sitesid
 - [x] Kategori listeleme, Ekleme,Düzenleme
 - [x] Yorum listeleme, Düzenleme, Silme 
 - [ ] Admin Dashboard
-- [ ] Sipariş Onaylama
-- [ ] Üye Rol
+- [x] Üye Rol
 
 Bu projemde şu ana kullanmış olduğum teknolojiler ve yapılar şu şekildedir: MVC, SOLID, Repository Pattern, C#,C# N-Tier Architecture, MSSQL, .Net Core, MailKit,LINQ,EF Core
