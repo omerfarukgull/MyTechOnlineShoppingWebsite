@@ -1,0 +1,51 @@
+﻿@model RegisterModel
+@{
+    ViewData["Title"] = "Register";
+    Layout = "~/Views/Shared/_Register.cshtml";
+}
+<div class="col-lg-4 mx-auto">
+    <div class="auth-form-light text-left py-5 px-4 px-sm-5">
+        <div class="brand-logo">
+             <a href="#" class="text-decoration-none">
+                <span class="h1 text-uppercase text-warning bg-dark px-2">MY TECH</span>
+                    <span class="h1 text-uppercase text-dark bg-warning px-2 ml-n1">Shop</span>
+                </a>
+        </div>
+        <h4>MyTech'e Üye Olun</h4>
+        <h6 class="font-weight-light">Kaydolmak kolaydır. Sadece bilgileri eksiksiz doldurunuz</h6>
+        <form asp-controller="Account" asp-action="Register" method="post" class="pt-3">
+            <div asp-validation-summary="All"></div>
+            <div class="form-group">
+                    <input type="text" asp-for="FirstName" class="form-control form-control-lg" id="exampleInputUsername2" placeholder="Adınız">
+                    <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                    <input type="text" asp-for="LastName" class="form-control form-control-lg" id="exampleInputUsername2" placeholder="Soyadınız">
+                    <span asp-validation-for="LastName" class="text-danger"></span>
+                </div>
+            <div class="form-group">
+                    <input type="text" asp-for="UserName" class="form-control form-control-lg" id="exampleInputUsername2" placeholder="Kullanıcı Adınız">
+                    <span asp-validation-for="UserName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                    <input asp-for="Email" type="email" class="form-control form-control-lg" id="exampleInputEmail2" placeholder="Email">
+                    <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                    <input asp-for="Password" type="password" class="form-control form-control-lg" id="exampleInputPassword2" placeholder="Şifre">
+                    <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                    <input asp-for="RePassword" type="password" class="form-control form-control-lg" id="exampleInputPassword2" placeholder="Şifre">
+                    <span asp-validation-for="RePassword" class="text-danger"></span>
+            </div>
+
+
+            <button type="submit" class="btn btn-block btn-warning btn-lg font-weight-medium auth-form-btn">Kaydet</button>
+            <div class="text-center mt-4 font-weight-light">
+                Hesabım Var? <a asp-action="Login" class="text-primary">Giriş</a>
+            </div>
+        </form>
+    </div>
+</div>
+

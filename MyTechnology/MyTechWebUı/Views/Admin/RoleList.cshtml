@@ -1,0 +1,53 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@model IEnumerable<IdentityRole>
+@{
+    ViewData["Title"] = "RoleList";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Rol Listesi</h1>
+
+
+
+<div class="col-md-12">
+    <a asp-action="RoleCreate" class="btn btn-outline-primary">Rol Ekle</a>
+    <div class="table-responsive mt-5 ">
+        <table class="table table-striped table-hover table-bordered">
+            <thead>
+                <tr>
+                    <th>Rol Id</th>
+                    <th>Rol Adı</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.Count() > 0)
+                {
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Id</td>
+                            <td>@item.Name</td>
+                                          <td>
+                            <a asp-controller="Admin" asp-action="RoleEdit" asp-route-roleId="@item.Id" class='btn btn-outline-success'>Detaylar</a>
+                            <form asp-controller="Admin" asp-action="RoleDelete" class="d-inline" method="post">
+                                    <input type="hidden" name="RoleId" value="@item.Id">
+                                    <button class='btn btn-outline-danger'>Sil</button>
+                                </form>
+                        </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <div class="alert alert-info">
+                        <h3>Rol Yok</h3>
+                    </div>
+                }
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+

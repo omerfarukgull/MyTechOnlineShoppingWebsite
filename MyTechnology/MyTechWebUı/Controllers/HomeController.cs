@@ -65,7 +65,7 @@ namespace MyTechWebUI.Controllers
 
             SmtpClient client = new SmtpClient();
             client.Connect("smtp.gmail.com", 587, false);
-            client.Authenticate("myblogtest10@gmail.com", "Kanka174*");
+            client.Authenticate("myblogtest10@gmail.com", "xiorqayjijnwtpos");
             client.Send(mimeMessage);
             client.Disconnect(true);
 

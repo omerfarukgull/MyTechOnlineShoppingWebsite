@@ -1,0 +1,26 @@
+﻿@model RoleModel
+@{
+    ViewData["Title"] = "RoleCreate";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="col-6 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Yeni Rol Ekle</h4>
+            <p class="card-description">
+                Lütfen Tüm Alanları Doldurunuz
+            </p>
+            <form asp-controller="Admin" asp-action="RoleCreate" method="post" class="forms-sample">
+                <div class="form-group">
+                    <label asp-for="Name"></label>
+                    <input asp-for="Name" type="text" class="form-control" placeholder="Rol"
+                           required=" required" data-validation-required-message="Lütfen Ürün Adı Giriniz">
+
+                </div>
+                <button type="submit" class="btn btn-primary mr-2">Ekle</button>
+            </form>
+        </div>
+    </div>
+</div>
+

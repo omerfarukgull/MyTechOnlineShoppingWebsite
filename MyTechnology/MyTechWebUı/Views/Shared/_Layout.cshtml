@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using Newtonsoft.Json;
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -26,7 +27,7 @@
                 </a>
             </div>
 
-            <div class="col-lg-4 col-6 text-left">
+            <div class="col-lg-6 col-6 text-right">
                 <form method="post" asp-controller="Home" asp-action="Search">
                     <div class="input-group">
                         <input type="text" class="form-control" name="search" placeholder="Ürün Ara">
@@ -38,26 +39,25 @@
                     </div>
                 </form>
             </div>
-            <div class="col-lg-2 text-lg-right">
-                <div class="d-inline-flex">
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">Hesabım</button>
-                        <div class="dropdown-menu dropdown-menu-right">
-                            <button class="dropdown-item" type="button">Giriş</button>
-                            <button class="dropdown-item" type="button">Üye Ol</button>
-                        </div>
-                    </div>
-
-                </div>
+            @*       <div class="col-lg-2 text-lg-right">
+            <div class="d-inline-flex">
+            <div class="btn-group">
+            <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">Hesabım</button>
+            <div class="dropdown-menu dropdown-menu-right">
+            <a asp-controller="Account" asp-action="Login" class="dropdown-item btn">Giriş</a>
+            <a asp-controller="Account" asp-action="Register" class="dropdown-item btn">Üye Ol</a>
+            </div>
             </div>
 
+            </div>
+            </div>*@
         </div>
     </div>
     <div class="container-fluid bg-dark">
         <div class="container  mb-30">
             <div class="row px-xl-5">
 
-                <div class="col-lg-12">
+                <div class="col-md-12">
                     <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-3 py-lg-0 px-0">
                         <a href="" class="text-decoration-none d-block d-lg-none">
                             <span class="h1 text-uppercase text-dark bg-light px-2">Multi</span>
@@ -68,22 +68,45 @@
                         </button>
                         <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                             <div class="navbar-nav mr-auto py-0">
-                                <a asp-controller="Home" asp-action="Index" class="nav-item nav-link active">Ana Sayfa</a>
+                                <a asp-controller="Home" asp-action="Index" class="nav-item nav-link">Ana Sayfa</a>
                                 <a asp-controller="Product" asp-action="Index" class="nav-item nav-link">Ürünler</a>
                                 <a asp-controller="Home" asp-action="About" class="nav-item nav-link">Hakkımızda</a>
                                 <a asp-controller="Home" asp-action="Contact" class="nav-item nav-link">İletişim</a>
                             </div>
-                            <div class="navbar-nav ml-auto py-0 d-none d-lg-block">
+                            <div class="navbar-nav ml-auto py-0 d-none d-lg-block mr-2">
                                 <a href="" class="btn px-0">
                                     <i class="fas fa-heart text-primary"></i>
                                     <span class="badge text-secondary border border-secondary rounded-circle" style="padding-bottom: 2px;">0</span>
                                 </a>
-                                <a href="" class="btn px-0 ml-3">
+                                <a href="" class="btn px-0">
                                     <i class="fas fa-shopping-cart text-primary"></i>
                                     <span class="badge text-secondary border border-secondary rounded-circle" style="padding-bottom: 2px;">0</span>
                                 </a>
                             </div>
                         </div>
+
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <div class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Hesabım <i class="fa fa-angle-down mt-1"></i></a>
+                                <div class="dropdown-menu bg-light rounded-0 border-0 m-0">
+                                    <a href="#" class="dropdown-item btn">Hesap Ayarları</a>
+                                    <a href="#" class="dropdown-item btn">Siparişlerim</a>
+                                    <a asp-controller="Account" asp-action="Logout" class="dropdown-item">
+                                        <i class="ti-power-off text-primary"></i>
+                                        Çıkış Yap
+                                    </a>
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <a asp-controller="Account" asp-action="Login" class="btn px-0">
+                                Giriş Yap
+                            </a>
+
+                        }
+
                     </nav>
                 </div>
             </div>
@@ -91,6 +114,20 @@
     </div>
 
     <div class="container">
+
+        @if (TempData["message"] != null)
+        {
+            var message = JsonConvert.DeserializeObject<AlertMessage>(TempData["message"] as String);
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="alert alert-@message.AlertType">
+                        @message.Message
+                    </div>
+                </div>
+            </div>
+        }
+
         @RenderBody()
     </div>
 

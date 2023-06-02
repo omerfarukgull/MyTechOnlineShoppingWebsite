@@ -63,10 +63,10 @@ namespace MyTechData.Migrations
                     b.Property<string>("ImgUrl3")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool?>("IsApproved")
+                    b.Property<bool>("IsApproved")
                         .HasColumnType("bit");
 
-                    b.Property<bool?>("IsHome")
+                    b.Property<bool>("IsHome")
                         .HasColumnType("bit");
 
                     b.Property<string>("ProductDescription")

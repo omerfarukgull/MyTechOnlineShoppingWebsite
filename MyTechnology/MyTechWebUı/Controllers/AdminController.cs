@@ -1,24 +1,35 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using MyTechBusiness.Abstract;
 using MyTechCore.Entities;
 using MyTechEntity;
+using MyTechWebUı.Identity;
 using MyTechWebUı.Models;
 using System.Reflection.Metadata;
 
 namespace MyTechWebUı.Controllers
 {
+    [Authorize(Roles = "admin")]
+
+
     public class AdminController : Controller
     {
         private IProductService _productService;
         private ICategoryService _categoryService;
         private IReviewService _reviewService;
 
-        public AdminController(IProductService productService, ICategoryService categoryService, IReviewService reviewService)
+        private RoleManager<IdentityRole> _roleManager;
+        private UserManager<User> _userManager;
+
+        public AdminController(IProductService productService, ICategoryService categoryService, IReviewService reviewService, RoleManager<IdentityRole> roleManager, UserManager<User> userManager)
         {
             _productService = productService;
             _categoryService = categoryService;
             _reviewService = reviewService;
+            _roleManager = roleManager;
+            _userManager = userManager;
         }
         public IActionResult Index()
         {
@@ -250,7 +261,7 @@ namespace MyTechWebUı.Controllers
         [HttpPost]
         public IActionResult ReviewDelete(int reviewId)
         {
-            var model =_reviewService.GetById(reviewId);
+            var model = _reviewService.GetById(reviewId);
             if (model == null)
             {
                 return NotFound();
@@ -258,6 +269,93 @@ namespace MyTechWebUı.Controllers
             _reviewService.Delete(model);
             return RedirectToAction("ReviewList");
         }
+        #endregion
+
+        #region Rol Islemleri
+        public IActionResult RoleList()
+        {
+            return View(_roleManager.Roles);
+        }
+        [HttpGet]
+        public IActionResult RoleCreate()
+        {
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> RoleCreate(RoleModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var result = await _roleManager.CreateAsync(new IdentityRole(model.Name));
+                if (result.Succeeded)
+                {
+                    return RedirectToAction(nameof(RoleList));
+                }
+            }
+            return View(model);
+        }
+        [HttpGet]
+        public async Task<IActionResult> RoleEdit(string roleId)
+        {
+            var role = await _roleManager.FindByIdAsync(roleId);
+
+            var members = new List<User>();
+            var nonMembers = new List<User>();
+
+            foreach (var user in _userManager.Users.ToList())
+            {
+                var list = await _userManager.IsInRoleAsync(user, role.Name) ? members : nonMembers;
+                list.Add(user);
+            }
+            var model = new RoleDetails()
+            {
+                Role = role,
+                Members = members,
+                NonMembers = nonMembers
+            };
+            return View(model);
+        }
+        [HttpPost]
+        public async Task<IActionResult> RoleEdit(RoleEditModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                foreach (var userId in model.IdsToAdd ?? new string[] { })
+                {
+                    var user = await _userManager.FindByIdAsync(userId);
+                    if (user != null)
+                    {
+                        var result = await _userManager.AddToRoleAsync(user, model.RoleName);
+                        if (!result.Succeeded)
+                        {
+                            foreach (var error in result.Errors)
+                            {
+                                ModelState.AddModelError("", error.Description);
+                            }
+                        }
+                    }
+                }
+
+                foreach (var userId in model.IdsToDelete ?? new string[] { })
+                {
+                    var user = await _userManager.FindByIdAsync(userId);
+                    if (user != null)
+                    {
+                        var result = await _userManager.RemoveFromRoleAsync(user, model.RoleName);
+                        if (!result.Succeeded)
+                        {
+                            foreach (var error in result.Errors)
+                            {
+                                ModelState.AddModelError("", error.Description);
+                            }
+                        }
+                    }
+                }
+
+            }
+            return Redirect("/admin/roleedit"+model.RoleId);
+        }
+
         #endregion
     }
 }
