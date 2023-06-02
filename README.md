@@ -20,4 +20,4 @@ E-Ticaret Web Sitesi. Bu proje, teknoloji ürünleri satışı yapan web sitesid
 - [ ] Admin Dashboard
 - [x] Üye Rol
 
-Bu projemde şu ana kullanmış olduğum teknolojiler ve yapılar şu şekildedir: MVC, SOLID, Repository Pattern, C#,C# N-Tier Architecture, MSSQL, .Net Core, MailKit,LINQ,EF Core
+Bu projemde şu ana kullanmış olduğum teknolojiler ve yapılar şu şekildedir: MVC, SOLID, Repository Pattern, C#,C# N-Tier Architecture, MSSQL, .Net Core, Identity,MailKit,LINQ,EF Core
