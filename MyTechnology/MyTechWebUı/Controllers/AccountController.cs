@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using MyTechBusiness.Abstract;
+using MyTechBusiness.Concrete;
 using MyTechWebUı.EmailSevices;
 using MyTechWebUı.Identity;
 using MyTechWebUı.Models;
@@ -15,18 +17,19 @@ namespace MyTechWebUı.Controllers
         private UserManager<User> _userManager;
         private SignInManager<User> _signInManager;
         private IEmailSender _emailSender;
-        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager, IEmailSender emailSender)
+        private ICartService _cartService;
+        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager, IEmailSender emailSender,ICartService cartService)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _emailSender = emailSender;
+            _cartService = cartService;
         }
         [HttpGet]
         public IActionResult Login()
         {
             return View();
         }
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginModel model)
@@ -64,13 +67,11 @@ namespace MyTechWebUı.Controllers
             }
             return View(model);
         }
-
         [HttpGet]
         public IActionResult Register()
         {
             return View();
         }
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegisterModel model)
@@ -122,6 +123,7 @@ namespace MyTechWebUı.Controllers
                 var result = await _userManager.ConfirmEmailAsync(user, token);
                 if (result.Succeeded)
                 {
+                    _cartService.InıtıalızeCart(userId);
                     CreateMessage("Hesabınız onaylandı. Lütfen giriş yapınız.", "success");
                     return View();
                 }
@@ -138,7 +140,6 @@ namespace MyTechWebUı.Controllers
             };
             TempData["message"] = JsonConvert.SerializeObject(msg);
         }
-
         public IActionResult ForgotPassword()
         {
             return View(); ;

@@ -62,10 +62,12 @@ namespace MyTechWebUı
             builder.Services.AddScoped<IProductRepository, EfProductRepository>();
             builder.Services.AddScoped<ICategoryRepository, EfCategoryRepository>();
             builder.Services.AddScoped<IReviewRepository, EfReviewRepository>();
+            builder.Services.AddScoped<ICartRepository, EfCartRepository>();
 
             builder.Services.AddScoped<IProductService, ProductManager>();
             builder.Services.AddScoped<ICategoryService, CategoryManager>();
             builder.Services.AddScoped<IReviewService, ReviewManager>();
+            builder.Services.AddScoped<ICartService, CartManager>();
 
          
             builder.Services.AddScoped<IEmailSender, GmailSender>(i =>

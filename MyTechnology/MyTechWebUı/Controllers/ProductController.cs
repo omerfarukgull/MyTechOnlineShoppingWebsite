@@ -11,10 +11,10 @@ namespace MyTechWebUı.Controllers
         {
             _productService = productService;
         }
-        public IActionResult Index(int categoryId)
+        public IActionResult Index(int CategoryId)
         {
          
-                var model = _productService.GetByCategory(categoryId);
+                var model = _productService.GetByCategory(CategoryId);
                 return View(model);
 
         }
