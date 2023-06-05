@@ -9,7 +9,7 @@ E-Ticaret Web Sitesi. Bu proje, teknoloji ürünleri satışı yapan web sitesid
 - [x] Üye Şifre Değişimi
 - [x] Üye olma
 - [x] Mail ile Onaylama
-- [ ] Sepet İşlemleri
+- [x] Sepet İşlemleri
 - [ ] Ödeme İşlemeri
 
 
