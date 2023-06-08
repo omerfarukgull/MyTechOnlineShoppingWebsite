@@ -6,7 +6,8 @@ using MyTechBusiness.Abstract;
 using MyTechCore.Entities;
 using MyTechEntity;
 using MyTechWebUı.Identity;
-using MyTechWebUı.Models;
+using MyTechWebUı.Models.Identity;
+using MyTechWebUı.Models.ProductModels;
 using System.Reflection.Metadata;
 
 namespace MyTechWebUı.Controllers

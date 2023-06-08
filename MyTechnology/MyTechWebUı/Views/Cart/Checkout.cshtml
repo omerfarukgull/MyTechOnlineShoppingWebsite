@@ -1,0 +1,114 @@
+﻿@model OrderModel
+@{
+    ViewData["Title"] = "Checkout";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="row px-xl-5">
+        <div class="col-12">
+            <nav class="breadcrumb bg-light mb-30">
+                <a class="breadcrumb-item text-dark" asp-controller="Home" asp-action="Index">Anasayfa</a>
+                <a class="breadcrumb-item text-dark" asp-controller="Product" asp-action="Index">Ürünler</a>
+                <span class="breadcrumb-item active">Sipariş</span>
+            </nav>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row px-xl-5">
+        <div class="col-lg-8">
+
+            <div class="bg-light p-30 mb-5">
+                <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Fatura Adresi</span></h5>
+                <form asp-controller="Cart" asp-action="Checkout" method="post">
+                    <input type="hidden" name="cartId" value="0" />
+                    <div class="row">
+                        <div class="col-md-6 form-group">
+                            <label>Adınız</label>
+                            <input asp-for="FirstName" class="form-control" placeholder="İsim">
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label>Soyadınız</label>
+                            <input asp-for="LastName" class="form-control" placeholder="Soyadı">
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label>E-mail</label>
+                            <input asp-for="Email" class="form-control" placeholder="Email">
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label>Telefon Numarası</label>
+                            <input asp-for="Phone" class="form-control" placeholder="Telefon">
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label>Adress</label>
+                            <textarea asp-for="Address" class="form-control" placeholder="Adress"></textarea>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label>Şehir</label>
+                            <input asp-for="City" class="form-control" placeholder="Şehir">
+                        </div>
+                    </div>
+                    <h5 class="section-title position-relative text-uppercase mb-3 mt-5"><span class="bg-secondary pr-3">Ödeme</span></h5>
+                    <div class="row">
+                        <div class="col-md-6 form-group">
+                            <label>Kart Sabihibi</label>
+                            <input asp-for="CardName" class="form-control" type="text" placeholder="İsim">
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label>Kart Numarası</label>
+                            <input asp-for="CardNumber" class="form-control" type="text" placeholder="Kart Numarası">
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label>Son kullananım Tarihi Ayı</label>
+                            <input asp-for="ExpirationMonth" class="form-control" type="text" placeholder="Ay">
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label>Son kullananım Tarihi Yılı</label>
+                            <input asp-for="ExpirationYear" class="form-control" type="text" placeholder="Yıl">
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label>Güvenlik Kodu</label>
+                            <input asp-for="Cvc" class="form-control" type="text" placeholder="Cvc">
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-lg btn-block">Tamamla</button>
+                </form>
+            </div>
+
+        </div>
+        <div class="col-lg-4">
+
+            <div class="bg-light p-30 mb-5">
+                <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Toplam Sipariş</span></h5>
+                <div class="border-bottom">
+                    <h6 class="mb-3">Ürünler</h6>
+                    @foreach (var item in Model.CartModel.CartItems)
+                    {
+                        <div class="d-flex justify-content-between">
+                            <p>@item.Name</p>
+                            <p>@item.Price.ToString("C2") * @item.Quantity</p>
+                        </div>
+                    }
+
+                </div>
+                <div class="border-bottom pt-3 pb-2">
+                    <div class="d-flex justify-content-between mb-3">
+                        <h6>@Model.CartModel.TotalPrice().ToString("C2")</h6>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <h6 class="font-weight-medium">Kargo Ücretsiz</h6>
+                    </div>
+                </div>
+                <div class="pt-2">
+                    <div class="d-flex justify-content-between mt-2">
+                        <h5>Şipariş Tutarı</h5>
+                        <h5>@Model.CartModel.TotalPrice().ToString("C2")</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

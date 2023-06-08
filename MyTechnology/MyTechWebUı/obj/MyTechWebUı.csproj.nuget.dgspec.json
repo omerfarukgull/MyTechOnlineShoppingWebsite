@@ -328,6 +328,10 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "Iyzipay": {
+              "target": "Package",
+              "version": "[2.1.55, )"
+            },
             "MailKit": {
               "target": "Package",
               "version": "[4.0.0, )"
@@ -355,6 +359,10 @@
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
               "version": "[6.0.13, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.2, )"
             }
           },
           "imports": [

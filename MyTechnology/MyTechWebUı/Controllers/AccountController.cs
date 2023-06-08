@@ -1,13 +1,11 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using MyTechBusiness.Abstract;
-using MyTechBusiness.Concrete;
 using MyTechWebUı.EmailSevices;
 using MyTechWebUı.Identity;
 using MyTechWebUı.Models;
+using MyTechWebUı.Models.Identity;
 using Newtonsoft.Json;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace MyTechWebUı.Controllers
 {

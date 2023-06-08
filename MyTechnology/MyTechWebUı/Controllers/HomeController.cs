@@ -4,6 +4,7 @@ using MyTechEntity;
 using MyTechWebUı.Models;
 using MailKit.Net.Smtp;
 using MimeKit;
+using MyTechWebUı.Models.ProductModels;
 
 namespace MyTechWebUI.Controllers
 {

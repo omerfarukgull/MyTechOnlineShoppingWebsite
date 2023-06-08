@@ -66,7 +66,8 @@
                         <h5>Toplam Ücret</h5>
                         <h5>@Model.TotalPrice().ToString("C2")</h5>
                     </div>
-                    <button class="btn btn-block btn-primary font-weight-bold my-3 py-3">Alışverişi Tamamla</button>
+       
+                    <a asp-controller="Cart" asp-action="Checkout" class="btn btn-block btn-primary font-weight-bold my-3 py-3">Alışverişi Tamamla</a>
                 </div>
             </div>
         </div>
