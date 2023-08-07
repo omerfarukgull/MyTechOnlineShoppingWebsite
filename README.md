@@ -11,8 +11,7 @@ E-Ticaret Web Sitesi. Bu proje, teknoloji ürünleri satışı yapan web sitesid
 - [x] Mail ile Onaylama
 - [x] Sepet İşlemleri
 - [x] Ödeme İşlemeri(Hatalı Çözüm Aşamasında)
-- [ ] Siparişlerim Sayfası
-- [ ] Unit Of Work Design Pattern
+- [x] Unit Of Work Design Pattern
 
 
 ## 📌 Admin Tarafında Yapılacaklar
