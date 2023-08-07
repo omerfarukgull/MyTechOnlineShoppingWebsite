@@ -10,14 +10,18 @@ using System.Threading.Tasks;
 
 namespace MyTechData.Concrete.Ef
 {
-    public class EfReviewRepository : EfGenericRepository<Review, TechContext>, IReviewRepository
+    public class EfReviewRepository : EfGenericRepository<Review>, IReviewRepository
     {
+        private TechContext TechContext
+        {
+            get { return context as TechContext; }
+        }
+        public EfReviewRepository(TechContext context) : base(context) { }
         public List<Review> GetAllWithProductName(string p)
         {
-            using (var context = new TechContext())
-            {
-                return context.Reviews.Include(p).ToList();
-            }
+
+            return TechContext.Reviews.Include(p).ToList();
+
         }
     }
 }

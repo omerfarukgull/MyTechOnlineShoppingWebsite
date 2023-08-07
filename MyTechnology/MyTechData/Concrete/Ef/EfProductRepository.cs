@@ -10,7 +10,15 @@ using System.Threading.Tasks;
 
 namespace MyTechData.Concrete.Ef
 {
-    public class EfProductRepository : EfGenericRepository<Product, TechContext>, IProductRepository
+    public class EfProductRepository : EfGenericRepository<Product>, IProductRepository
     {
+        private TechContext TechContext
+        {
+            get { return context as TechContext; }
+        }
+        public EfProductRepository(TechContext context) : base(context) { }
+
+
     }
 }
+

@@ -9,17 +9,22 @@ using System.Threading.Tasks;
 
 namespace MyTechData.Concrete.Ef
 {
-    public class EfCategoryRepository : EfGenericRepository<Category, TechContext>, ICategoryRepository
+    public class EfCategoryRepository : EfGenericRepository<Category>, ICategoryRepository
     {
+        private TechContext TechContext
+        {
+            get { return context as TechContext; }
+        }
+        public EfCategoryRepository(TechContext context) : base(context) { }
+
         public Category GetByIdProdcut(int categoryid)
         {
-            using (var context = new TechContext())
-            {
-                return context.Categories
+           
+                return TechContext.Categories
                         .Where(i => i.CategoryId == categoryid)
                         .Include(i=>i.Products)
                         .FirstOrDefault();
-            }
+            
         }
     }
 }

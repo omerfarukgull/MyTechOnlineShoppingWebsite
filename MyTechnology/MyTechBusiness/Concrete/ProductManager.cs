@@ -11,50 +11,52 @@ namespace MyTechBusiness.Concrete
 {
     public class ProductManager : IProductService
     {
-        private IProductRepository _productRepository;
-        public ProductManager(IProductRepository productRepository)
+        private IUnitOfWork _unitOfWork;
+        public ProductManager(IUnitOfWork unitOfWork)
         {
-            _productRepository = productRepository;
+            _unitOfWork = unitOfWork;
         }
-
         public void Add(Product product)
         {
-            _productRepository.Create(product);
+            _unitOfWork.Products.Create(product);
+            _unitOfWork.Save();
         }
 
         public void Delete(Product product)
         {
-            _productRepository.Delete(product);
+            _unitOfWork.Products.Delete(product);
+            _unitOfWork.Save();
         }
         public List<Product> GetList()
         {
-            return _productRepository.GetList();
+            return _unitOfWork.Products.GetList();
         }
         public List<Product> GetAll()
         {
-            return _productRepository.GetList(p => p.IsApproved == true && p.IsHome == true);
+            return _unitOfWork.Products.GetList(p => p.IsApproved == true && p.IsHome == true);
         }
 
         public List<Product> GetAll(string search)
         {
 
-            return _productRepository.GetList(p=>p.ProductName.Contains(search) && p.IsApproved == true && p.IsHome == true);
+            return _unitOfWork.Products.GetList(p=>p.ProductName.Contains(search) && p.IsApproved == true && p.IsHome == true);
         }
 
         public List<Product> GetByCategory(int categoryId)
         {
         
-            return _productRepository.GetList(p => p.CategoryId == categoryId || categoryId==0 && p.IsApproved == true && p.IsHome == true);
+            return _unitOfWork.Products.GetList(p => p.CategoryId == categoryId || categoryId==0 && p.IsApproved == true && p.IsHome == true);
         }
 
         public Product GetById(int productId)
         {
-            return _productRepository.Get(p=>p.ProductId==productId);
+            return _unitOfWork.Products.Get(p=>p.ProductId==productId);
         }
 
         public void Update(Product product)
         {
-            _productRepository.Update(product);
+            _unitOfWork.Products.Update(product);
+            _unitOfWork.Save();
         }
     }
 }

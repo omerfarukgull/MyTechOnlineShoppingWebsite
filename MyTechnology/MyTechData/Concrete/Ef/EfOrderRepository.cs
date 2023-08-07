@@ -8,7 +8,12 @@ using System.Threading.Tasks;
 
 namespace MyTechData.Concrete.Ef
 {
-    public class EfOrderRepository:EfGenericRepository<Order,TechContext>,IOrderRepository
+    public class EfOrderRepository:EfGenericRepository<Order>,IOrderRepository
     {
+        private TechContext TechContext
+        {
+            get { return context as TechContext; }
+        }
+        public EfOrderRepository(TechContext context) : base(context) { }
     }
 }

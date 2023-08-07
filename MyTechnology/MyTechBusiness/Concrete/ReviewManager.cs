@@ -11,43 +11,45 @@ namespace MyTechBusiness.Concrete
 {
     public class ReviewManager : IReviewService
     {
-        private IReviewRepository _reviewRepository;
-        public ReviewManager(IReviewRepository reviewRepository)
+        private IUnitOfWork _unitOfWork;
+        public ReviewManager(IUnitOfWork unitOfWork)
         {
-            _reviewRepository = reviewRepository;
+            _unitOfWork = unitOfWork;
         }
-
         public void Add(Review review)
         {
-           _reviewRepository.Create(review);
+            _unitOfWork.Reviews.Create(review);
+            _unitOfWork.Save();
         }
 
         public void Delete(Review review)
         {
-            _reviewRepository.Delete(review);
+            _unitOfWork.Reviews.Delete(review);
+            _unitOfWork.Save();
         }
         public List<Review> GetAllWithProductName(string p)
         {
-            return _reviewRepository.GetAllWithProductName(p);
+            return _unitOfWork.Reviews.GetAllWithProductName(p);
         }
         public List<Review> GetAll(int productId)
         {
-            return _reviewRepository.GetList(r => r.ProductId == productId);
+            return _unitOfWork.Reviews.GetList(r => r.ProductId == productId);
         }
 
         public Review GetById(int reviewId)
         {
-            return _reviewRepository.Get(r=>r.Id==reviewId);
+            return _unitOfWork.Reviews.Get(r=>r.Id==reviewId);
         }
 
         public void Update(Review review)
         {
-           _reviewRepository.Update(review);
+            _unitOfWork.Reviews.Update(review);
+            _unitOfWork.Save();
         }
 
         public List<Review> GetAll()
         {
-            return _reviewRepository.GetList();
+            return _unitOfWork.Reviews.GetList();
         }
     }
 }

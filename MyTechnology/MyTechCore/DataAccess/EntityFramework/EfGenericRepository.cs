@@ -9,58 +9,57 @@ using System.Threading.Tasks;
 
 namespace MyTechData.Concrete.Ef
 {
-    public class EfGenericRepository<TEntity, TContext> : IRepository<TEntity> 
-        where TEntity: class,new()
-        where TContext : DbContext,new()
+    public class EfGenericRepository<TEntity> : IRepository<TEntity>
+        where TEntity : class, new()
+
     {
+        protected readonly DbContext context;
+        public EfGenericRepository(DbContext dbContext)
+        {
+            context = dbContext;
+        }
         public TEntity Get(Expression<Func<TEntity, bool>> filter = null)
         {
-           using(var context = new TContext())
-            { 
+
             return context.Set<TEntity>().SingleOrDefault(filter);
-            }
+
         }
         public List<TEntity> GetList(Expression<Func<TEntity, bool>> filter = null)
         {
-            using (var context = new TContext())
-            { 
+
             return filter == null
                 ? context.Set<TEntity>().ToList()
                 : context.Set<TEntity>().Where(filter).ToList();
-            }
+
         }
         public void Create(TEntity entity)
         {
-            using (var context = new TContext())
-            { 
             //var addEntity = context.Entry(entity);
             //addEntity.State = EntityState.Added;
 
             context.Entry(entity).State = EntityState.Added;
-            context.SaveChanges();
+            //context.SaveChanges();
+
         }
-    }
         public virtual void Update(TEntity entity)
         {
-            using (var context = new TContext())
-            { 
+
             //var updateEntity = context.Entry(entity);
             //updateEntity.State = EntityState.Modified;
 
             context.Entry(entity).State = EntityState.Modified;
-            context.SaveChanges();
+           // context.SaveChanges();
+
         }
-    }
         public void Delete(TEntity entity)
         {
-            using (var context = new TContext())
-            { 
+
             //var deleteEntity = context.Entry(entity);
             //deleteEntity.State = EntityState.Deleted;
 
             context.Entry(entity).State = EntityState.Deleted;
-            context.SaveChanges();
-            }
+           // context.SaveChanges();
+
         }
     }
 }

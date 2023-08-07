@@ -10,6 +10,7 @@ namespace MyTechData.Concrete.Ef
 {
     public class TechContext : DbContext
     {
+        public TechContext(DbContextOptions options) : base(options) { }
         public DbSet<Product> Products { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Review> Reviews { get; set; }
@@ -17,9 +18,9 @@ namespace MyTechData.Concrete.Ef
         public DbSet<CartItem> CartItems { get; set; }
 
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer(@"server=ADMINISTRATOR;database=MyTechDb;integrated security=true;");
-        }
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    optionsBuilder.UseSqlServer(@"server=ADMINISTRATOR;database=MyTechDb;integrated security=true;");
+        //}
     }
 }

@@ -21,7 +21,8 @@ namespace MyTechWebUı
             var serviceProvider = builder.Services.BuildServiceProvider();
             var configuration = serviceProvider.GetRequiredService<IConfiguration>();
 
-            builder.Services.AddDbContext<ApplicationContext>(options => options.UseSqlServer("server=ADMINISTRATOR;database=MyTechDb;integrated security=true;"));
+            builder.Services.AddDbContext<ApplicationContext>(options => options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
+            builder.Services.AddDbContext<TechContext>(options => options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
             builder.Services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<ApplicationContext>().AddDefaultTokenProviders();
             builder.Services.Configure<IdentityOptions>(options =>
             {
@@ -59,11 +60,12 @@ namespace MyTechWebUı
                 };
             });
 
-            builder.Services.AddScoped<IProductRepository, EfProductRepository>();
-            builder.Services.AddScoped<ICategoryRepository, EfCategoryRepository>();
-            builder.Services.AddScoped<IReviewRepository, EfReviewRepository>();
-            builder.Services.AddScoped<ICartRepository, EfCartRepository>();
-            builder.Services.AddScoped<IOrderRepository, EfOrderRepository>();
+            //builder.Services.AddScoped<IProductRepository, EfProductRepository>();
+            //builder.Services.AddScoped<ICategoryRepository, EfCategoryRepository>();
+            //builder.Services.AddScoped<IReviewRepository, EfReviewRepository>();
+            //builder.Services.AddScoped<ICartRepository, EfCartRepository>();
+            //builder.Services.AddScoped<IOrderRepository, EfOrderRepository>();
+            builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             builder.Services.AddScoped<IProductService, ProductManager>();
             builder.Services.AddScoped<ICategoryService, CategoryManager>();

@@ -10,34 +10,35 @@ using System.Threading.Tasks;
 
 namespace MyTechData.Concrete.Ef
 {
-    public class EfCartRepository : EfGenericRepository<Cart, TechContext>, ICartRepository
+    public class EfCartRepository : EfGenericRepository<Cart>, ICartRepository
     {
+        private TechContext TechContext
+        {
+            get { return context as TechContext; }
+        }
+        public EfCartRepository(TechContext context) : base(context) { }
         public void DeleteFromCart(int cartId, int productId)
         {
-            using (var ctx = new TechContext())
-            {
-                var cmd = @"delete from CartItems where CartId=@p0 and ProductId=@p1";
-                ctx.Database.ExecuteSqlRaw(cmd, cartId, productId);
-            }
+
+            var cmd = @"delete from CartItems where CartId=@p0 and ProductId=@p1";
+            TechContext.Database.ExecuteSqlRaw(cmd, cartId, productId);
+
         }
 
         public Cart GetByUserId(string userId)
         {
-            using (var ctx = new TechContext())
-            {
-                return ctx.Carts
-                            .Include(i => i.CartItems)
-                            .ThenInclude(i => i.Product)
-                            .FirstOrDefault(i => i.UserId == userId);
-            }
+
+            return TechContext.Carts
+                        .Include(i => i.CartItems)
+                        .ThenInclude(i => i.Product)
+                        .FirstOrDefault(i => i.UserId == userId);
+
         }
         public override void Update(Cart entity)
         {
-            using (var context = new TechContext())
-            {
-                context.Carts.Update(entity);
-                context.SaveChanges();
-            }
+
+            TechContext.Carts.Update(entity);
+
         }
     }
 }

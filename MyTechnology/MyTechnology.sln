@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyTechBusiness", "MyTechBus
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyTechCore", "MyTechCore\MyTechCore.csproj", "{C9460111-D21D-4487-88A1-28B9AEC8D969}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyTechWebUı", "MyTechWebUı\MyTechWebUı.csproj", "{8CCB6FDA-409E-41D7-8903-B4A47D223F3D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyTechWebUı", "MyTechWebUı\MyTechWebUı.csproj", "{8CCB6FDA-409E-41D7-8903-B4A47D223F3D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
