@@ -1,4 +1,4 @@
-# MyTechOnlineShoppingWebsite(Devam Ediyor)
+# MyTechOnlineShoppingWebsite
 E-Ticaret Web Sitesi. Bu proje, teknoloji ürünleri satışı yapan web sitesidir. Projemde hazır tema kullanılmıştır.
 ## 📌 Kullanıcı Tarafında Yapılacaklar
 - [x] Ürün Listeleme
@@ -14,10 +14,10 @@ E-Ticaret Web Sitesi. Bu proje, teknoloji ürünleri satışı yapan web sitesid
 - [x] Unit Of Work Design Pattern
 
 
-## 📌 Admin Tarafında Yapılacaklar
+## 📌 Admin Tarafında Yapılanlar
 - [x] Admin Ürün Listeleme, Güncelleme, Ekle, Silme İşlemleri
 - [x] Kategori listeleme, Ekleme,Düzenleme
 - [x] Yorum listeleme, Düzenleme, Silme 
 - [x] Üye Rol
 
-Bu projemde şu ana kullanmış olduğum teknolojiler ve yapılar şu şekildedir: MVC, SOLID, Repository Pattern, C#,C# N-Tier Architecture, MSSQL, .Net Core, Identity,MailKit,LINQ,EF Core
+Bu projemde şu ana kullanmış olduğum teknolojiler ve yapılar şu şekildedir: MVC, SOLID, Repository Pattern, Unit Of Work, C#,C# N-Tier Architecture, MSSQL, .Net Core, Identity,MailKit,LINQ,EF Core
