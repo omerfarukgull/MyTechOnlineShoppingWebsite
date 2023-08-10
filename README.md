@@ -1,6 +1,6 @@
 # MyTechOnlineShoppingWebsite
 E-Ticaret Web Sitesi. Bu proje, teknoloji ürünleri satışı yapan web sitesidir. Projemde hazır tema kullanılmıştır.
-## 📌 Kullanıcı Tarafında Yapılacaklar
+## 📌 Kullanıcı Tarafında Yapılanlar
 - [x] Ürün Listeleme
 - [x] Ürün Detay
 - [x] Ürün Yorum
